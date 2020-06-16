@@ -1,65 +1,95 @@
-<?php 
-  $path="./views/layout/inc/header.inc.php";
-  require_once($path);
+<?php require_once("./views/layout/inc/header.inc.php"); 
+session_start();
 ?>
-        <div class=" ml-5 mt-2 mb-2 rounded" style="width:94%; " >
-            <div class="row" style="background-color:#48d1cc; height:90px;">
-                <div class="col-9 float-right">
-                    <h3 class="text-white font-weight-bold float-right m-0 p-4">CREER ET PARAMETRER VOS QUIZZ</h3>
-                </div>
-                <div class="col-3">
-                    <button name="" value="" type="submit" class="btn float-right text-white mt-4  shadow-sm" style="text-shadow: 1px 1px 2px black; color:#40e0d0;">Deconnexion</button>
-                </div>
-            </div>
 
-            <div class="row " style="background-color:#f5f5f5; height:710px;">
-                <div class="col-4 ">
-                    <div class="container rounded p-auto mt-5 bg-light"  style="width:95%; height:75%;">
-                        <div class="row" style=" height:40%; background:linear-gradient(white,#48d1cc)">
-                            <div class="col-5">
-                                <div class="border border-dark  mt-4 rounded-circle" style="width:110px; height:110px;">
-                                    <div class="  bg-secondary">
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-7 ">
-                               <h4 class="font-weight-bold text-white mt-5"> Gustavie</h4>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <nav class="nav flex-column " >
-                                <a class="nav-link active" href="#">
-                                    <div>
-                                        Liste Question
-                                    </div>
-                                </a>
-                                <a class="nav-link" href="#">
-                                    <div>
-                                        Créer Admin
-                                    </div>
-                                </a>
-                                <a class="nav-link" href="#">
-                                    <div>
-                                        Liste Joueurs
-                                    </div>
-                                </a>
-                                <a class="nav-link" href="#">
-                                    <div>
-                                        Créer Question
-                                    </div>
-                                </a>
-                            </nav>
-                        </div>
-                    </div>
+
+<div class="container p-0 d-flex align-items-start col-11 fixed-bottom fixed-top rounded shadow-sm bg-white" style="margin-top: 70px; margin-bottom: 10px;">
+
+    <div class="position-relative w-100 d-flex justify-content-center align-items-center bgcolor1">
+        <div class="col-9 float-right">
+            <h3 class="text-white font-weight-bold float-right m-0 p-3">CREER ET PARAMETRER VOS QUIZZ</h3>
+        </div>
+        <div class="col-3">
+            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn float-right text-white bgcolor3 shadow-sm" style="text-shadow: 1px 1px 2px black;">Deconnexion</button>
+        </div>
+    </div>
+
+
+
+    <div class="position-absolute row container w-100 m-0 d-flex justify-content-center align-items-center col-12 shadow-sm bgcolor7 border-none" style="top: 9%; left: 0; right: 0; bottom: 0;">
+
+        <div class="position-relative container p-0 w-100 m-auto col-3 rounded shadow bg-white" style="height: 60%;">
+            <div class="container w-100 bg-white d-flex align-items-center justify-content-center" style="height: 50%; background: linear-gradient(#fff, #51bfd0);">
+                <div class="container bg-dark rounded-circle m-2" style="height: 100px; width: 100px; border-color: #51bfd0; border-width: 10px;">
+
                 </div>
-                <div class="col-8 " style="height:500px;">
-                    <?php echo $content_for_layout;?>
-                </div>
+                <?php
+                if (isset($_SESSION['user'])) {
+                ?>
+                    <h4 class="font-weight-bold text-white m-0 p-0"><?=$_SESSION['user']->getFullName()?></h4>
+                <?php
+                }
+                ?>
+            </div>
+            <div class="nav flex-column nav-pills m-auto" role="tablist" aria-orientation="vertical">
+                <a class="nav-link rounded-0 color5" href="<?= WEBROOT ?>security/listerQuestions" style="height: 10%;">Lister Questions</a>
+                <a class="nav-link rounded-0 color5" href="<?= WEBROOT ?>security/inscription" style="height: 10%;">Créer Admin</a>
+                <a class="nav-link rounded-0 color5" href="<?= WEBROOT ?>security/listerJoueurs" style="height: 10%;">Lister Joueurs</a>
+                <a class="nav-link rounded-0 color5" href="<?= WEBROOT ?>security/creerQuestion" style="height: 10%;">Créer Questions</a>
             </div>
         </div>
-<?php 
-  $path="./views/layout/inc/footer.inc.php";
-  require_once($path);
-?>
- 
+
+
+        <?php echo $content_for_layout; ?>
+
+
+    </div>
+
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Déconnexion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment vous déconnecter ?
+            </div>
+            <form action="<?= WEBROOT ?>security/seDeconnecter" method="post">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Non</button>
+                    <button type="submit" name="btn_logout" class="btn btn-success">Oui</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<?php require_once("./views/layout/inc/footer.inc.php"); ?>
+
+
+<script type="text/javascript">
+
+const links = document.getElementsByTagName("a");
+links[0].addEventListener("click", function(e){
+        links[0].classList.value +=" active ";
+});
+links[1].addEventListener("click", function(e){
+        links[1].classList.value +=" active ";
+});  
+links[2].addEventListener("click", function(e){
+        links[2].classList.value +=" active ";
+});  
+links[3].addEventListener("click", function(e){
+        links[3].classList.value +=" active ";
+});   
+
+</script>

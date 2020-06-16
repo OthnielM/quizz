@@ -5,16 +5,14 @@ class Controller {
      protected $views;
      protected $layout="layout_admin";
      protected $validator;
-     protected $data=[];
+     protected $data = [];
      protected $manager;
-     protected $profi;
-     
 
-     function __construct()
+     public function __construct()
      {
-         session_start();
-        $this->validator=new validator();
+         $this->validator = new Validator();
      }
+
     public function render(){
         ob_start();
         extract($this->data);

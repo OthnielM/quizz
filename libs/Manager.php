@@ -6,11 +6,11 @@
        //Classe d'encapsulation des données récuperer lors d'une requete Select 
        protected $className;
    
-      private   function getConnexion(){
+      private function getConnexion(){
         try{
            //Scenerio nominal
            if($this->pdo==null){
-            $this->pdo = new PDO('mysql:host=localhost;dbname=projetQuizz', 'root','');
+            $this->pdo = new PDO('mysql:host=localhost;dbname=glrs_quizz', 'root','');
             //Activer les erreurs
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION );
             //Activer le Mode Recuperation sous la forme d'un tableau Associatif
@@ -21,7 +21,6 @@
           //Scenerio Exception
               die("Verifier les Parametres de Conexion".$ex->getMessage());
         }
-      
       }
 
       private   function CloseConnexion(){

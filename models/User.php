@@ -6,15 +6,14 @@ class User implements IManager{
     private $pwd;
     private $profil;
     private $avatar;
+    private $score;
 
     public function __construct($row=null){
+        $this->profil = 'admin';
+        $this->score = 0;
         if($row!=null){
             $this->hydrate($row);
         }
-    }
-    
-    public function getProfil(){
-        return $this->profil;
     }
 
     public function hydrate($row){
@@ -24,6 +23,47 @@ class User implements IManager{
        $this->pwd=$row['pwd'];
        $this->profil=$row['profil'];
        $this->avatar=$row['avatar'];
-       //ecrire un algorithme pour la méthode hydrate
+    }
+
+    public function getId(){
+        return $this->id;
+    }
+    public function getProfil(){
+        return $this->profil;
+    }
+    public function getFullName(){
+        return $this->fullName;
+    }
+    public function getLogin(){
+        return $this->login;
+    }
+    public function getPwd(){
+        return $this->pwd;
+    }
+    public function getAvatar(){
+        return $this->avatar;
+    }
+    public function getScore(){
+        return $this->score;
+    }
+
+
+    public function setProfil($profil){
+        $this->profil = $profil;
+    }
+    public function setFullName($fullName){
+        $this->fullName = $fullName;
+    }
+    public function setLogin($login){
+        $this->login = $login;
+    }
+    public function setPwd($pwd){
+        $this->pwd = $pwd;
+    }
+    public function setAvatar($avatar){
+        $this->avatar = $avatar;
+    }
+    public function setScore($score){
+        $this->score = $score;
     }
 }

@@ -1,52 +1,39 @@
-
-
-
-<div class="m-auto " style=" width:500px; height:360px; padding-top:150px; ">
-        
-    <div class="" style="height:85px; background-color:#48d1cc">
-        <p style=" color:#f5f5f5;"> Login Form</p>
-
-    </div>
-    <form method="post" action="security/seConnecter" class="pb-5" style=" background-color:#f5f5f5; padding-top:20px;">
+<div class="d-block top m-0 p-0 col-4 bg-white m-auto font-weight-bold rounded shadow-sm" style="z-index:1;">
+    <h2 class=" m-0 col-12 text-white w-100 bgcolor1" style="font-size: 20px;">
+        <p class="p-4 bgcolor1">Login Form</p>
+    </h2>
+    <div class="m-4 pb-1">
         <?php
-            if(isset($err_login)){
+        if (isset($err_login)) {
         ?>
-        <small id="HelpId" class="text-danger ml-4"> <?=$err_login ?></small>
-        <?php 
-            }
+            <small id="helpId" class="text-danger"><?= $err_login ?></small>
+        <?php
+        }
         ?>
-        <div class="form-group" >
-            <input type="text" name="login" id="" class="form-control" style=" width:90%; height:65px; margin:auto; " placeholder=" Login " aria-describedby="helpId">
-            <?php
-                if(isset($erreurs['login'])){
-            ?>
-            <small id="HelpId" class="text-danger ml-4"> <?=$erreurs['login'] ?></small>
-            <?php 
+        <form method="post" action="<?=WEBROOT?>security/seConnecter">
+            <div class="form-group">
+                <input type="text" class="form-control" name="login" id="login" autocomplete="on" placeholder="Login" style="height: 50px;">
+                <?php
+                if (isset($erreurs['login'])) {
+                ?>
+                    <small id="helpId" class="text-danger"><?= $erreurs['login'] ?></small>
+                <?php
                 }
-            ?>
-        </div>
-        <div class="form-group">
-            <input type="password" name="password" id="" class="form-control" style=" width:90%; height:65px; margin:auto; " placeholder=" Password " aria-describedby="helpId">
-            <?php
-                if(isset($erreurs['password'])){
-            ?>
-            <small id="HelpId" class="text-danger ml-4"> <?=$erreurs['password'] ?></small>
-            <?php 
+                ?>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" id="password" autocomplete="on" placeholder="Password" style="height: 50px;">
+                <?php
+                if (isset($erreurs['password'])) {
+                ?>
+                    <small id="helpId" class="text-danger"><?= $erreurs['password'] ?></small>
+                <?php
                 }
-            ?>
-        </div>
-        <div style=" width:90%; margin:auto;">
-            <button type="submit" class="btn " name="btn_connexion" style="background-color:#48d1cc; color:#f5f5f5;"> Connexion </button>
-            <a href="security/loadViewInscription">
-                <span style=" color:#a9a9a9; margin-left:30px;"> S'inscrire pour jouer? </span>
-            </a>
-        </div>
-
-    </form>
+                ?> </div>
+            <div class="mb-5">
+                <button type="submit" name="btn_connexion" id="connexion" class="mr-5 btn bgcolor1 text-white" style="height: 40px; width:120px;">Connexion</button>
+                <a href="<?=WEBROOT?>security/inscription" class="text-black-50">S'inscrire pour jouer?</a>
+            </div>
+        </form>
+    </div>
 </div>
-
-                
-         
-    
-
-       
